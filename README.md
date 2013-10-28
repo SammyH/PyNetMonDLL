@@ -7,12 +7,11 @@ Useful for intercepting/modifying/filtering network traffic in a specific proces
 How it works
 ===========
 When this DLL is loaded into a target process, the following occurs:
-    - A console is allocated (AllocConsole) and stdout,stdin,stderr is redirected to this console (freopen)
 
-    - Search for INI configuration file (config.ini) in same directory as target executable
+- A console is allocated (AllocConsole) and stdout,stdin,stderr is redirected to this console (freopen)
+- Search for INI configuration file (config.ini) in same directory as target executable
         key "hookfile" tells DLL what python script file to send net traffic to
-
-    - The winsock functions "WSASend", "WSARecv", "send", "sendto", "recv", and "recvfrom" are located in ws2_32.dll and
+- The winsock functions "WSASend", "WSARecv", "send", "sendto", "recv", and "recvfrom" are located in ws2_32.dll and
         a jump instruction is written in the prologue of each of these functions to a special hook
         function.
 
